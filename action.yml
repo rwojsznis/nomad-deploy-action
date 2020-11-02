@@ -16,11 +16,11 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.token }}
-    - ${{ inputs.address }}
-    - ${{ inputs.job }}
-    - ${{ inputs.config }}
+  env:
+    NOMAD_TOKEN: ${{ inputs.token }}
+    NOMAD_ADDRESS: ${{ inputs.address }}
+    NOMAD_JOB: ${{ inputs.job }}
+    LEVANT_CONFIG: ${{ inputs.config }}
 branding:
   icon: 'upload-cloud'
   color: 'green'

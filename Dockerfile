@@ -9,4 +9,6 @@ RUN chmod +x /usr/bin/levant
 WORKDIR /nomad-deploy
 COPY deploy /nomad-deploy/deploy
 
+RUN chmod +x /nomad-deploy/deploy
+
 ENTRYPOINT ["/nomad-deploy/deploy"]
