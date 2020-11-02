@@ -3,40 +3,12 @@
 nomad_token=$1
 nomad_address=$2
 nomad_job_file_path=$3
-replaced_nomad_job_file_path=/tmp/nomad-deploy/jobs/$(basename "$3")
-additional_vars=$4
-
-produce_replaced_nomad_file() {
-  # Make the temporary directory and create the new job file
-  mkdir -p /tmp/nomad-deploy/jobs
-  touch "$replaced_nomad_job_file_path"
-  if [[ $additional_vars == "" ]]
-  then
-    echo 'No additional vars found'
-    # Just copy the job file straight across, no replacement of env vars
-    cat "$nomad_job_file_path" > "$replaced_nomad_job_file_path"
-  else
-    local additional_vars_array=("$additional_vars")
-    local keys_to_replace=()
-    for pair in ${additional_vars_array[*]}
-    do
-      # collect the keys_to_replace of each additional var in an array
-      keys_to_replace+=("\$${pair%=*}")
-    done
-    # replace the contents of the job file with the required env vars
-    envsubst "${keys_to_replace[*]}" > "$replaced_nomad_job_file_path" < "$nomad_job_file_path"
-  fi
-}
+config_file_path=$4
 
 if [ -f "$nomad_job_file_path" ]; then
-  echo "$nomad_job_file_path exists"
-  # export each of the additional_vars
-  for pair in $additional_vars; do export "${pair?}"; done
-  produce_replaced_nomad_file
   export NOMAD_ADDR="$nomad_address"
   export NOMAD_TOKEN="$nomad_token"
-  nomad job plan "$replaced_nomad_job_file_path"
-  nomad job run "$replaced_nomad_job_file_path"
+  levant deploy -var-file "$config_file_path" "$nomad_job_file_path"
 else
   echo "$nomad_job_file_path does not exist"
   exit 1

@@ -1,5 +1,5 @@
-name: 'Run Nomad Job'
-description: 'Handles running of a given nomad job'
+name: 'Nomad Deploy'
+description: 'nomad deploy with levant'
 inputs:
   token:
     description: 'Token used to authenticate with a nomad server'
@@ -10,10 +10,9 @@ inputs:
   job:
     description: 'Path to the nomad job file'
     required: true
-  additional_vars:
-    description: 'Additional vars to set for running job run'
-    required: false
-    default: ''
+  config:
+    description: 'Path to the levant config file'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -21,7 +20,7 @@ runs:
     - ${{ inputs.token }}
     - ${{ inputs.address }}
     - ${{ inputs.job }}
-    - ${{ inputs.additional_vars }}
+    - ${{ inputs.config }}
 branding:
   icon: 'upload-cloud'
   color: 'green'
