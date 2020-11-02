@@ -1,11 +1,3 @@
 #! /usr/bin/env bash
 
-export NOMAD_ADDR="${NOMAD_ADDRESS}"
-export NOMAD_TOKEN="${NOMAD_TOKEN}"
-
-if [ -f "$nomad_job_file_path" ]; then
-  levant deploy -var-file "${LEVANT_CONFIG}" "${NOMAD_JOB}"
-else
-  echo "${NOMAD_JOB} does not exist"
-  exit 1
-fi
+levant deploy -var-file "${LEVANT_CONFIG}" "${NOMAD_JOB}"

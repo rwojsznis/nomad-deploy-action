@@ -18,7 +18,7 @@ runs:
   image: 'Dockerfile'
   env:
     NOMAD_TOKEN: ${{ inputs.token }}
-    NOMAD_ADDRESS: ${{ inputs.address }}
+    NOMAD_ADDR: ${{ inputs.address }}
     NOMAD_JOB: ${{ inputs.job }}
     LEVANT_CONFIG: ${{ inputs.config }}
 branding:
