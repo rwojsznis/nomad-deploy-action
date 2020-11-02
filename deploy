@@ -1,3 +1,8 @@
 #! /usr/bin/env bash
 
+echo "$NOMAD_TOKEN"
+echo "$NOMAD_ADDR"
+echo "$NOMAD_JOB"
+echo "$LEVANT_CONFIG"
+
 levant deploy -var-file "$LEVANT_CONFIG" "$NOMAD_JOB"
