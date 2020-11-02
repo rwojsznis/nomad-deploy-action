@@ -20,8 +20,8 @@ jobs:
       - name: Deploy with Nomad
         uses: qazz92/nomad-deploy
         with:
-          token: '{{ secrets.YOUR_NOMAD_SECRET }}'
-          address: '{{ secrets.YOUR_NOMAD_SERVER }}'
+          token: ${{ secrets.YOUR_NOMAD_SECRET }}
+          address: ${{ secrets.YOUR_NOMAD_SERVER }}
           job: path/to/your/nomad/job/file
           config: path/to/your/levant/config/file
 ```
