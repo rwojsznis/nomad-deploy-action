@@ -1,4 +1,4 @@
-FROM hashicorp/levant:0.3.0
+FROM emqz/levant:latest
 
 WORKDIR /nomad-deploy
 

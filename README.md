@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Deploy with Nomad
-        uses: qazz92/nomad-deploy
+        uses: rwojsznis/nomad-deploy
         with:
           token: ${{ secrets.YOUR_NOMAD_SECRET }}
           address: ${{ secrets.YOUR_NOMAD_SERVER }}

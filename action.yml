@@ -3,7 +3,7 @@ description: 'nomad deploy with levant'
 inputs:
   token:
     description: 'Token used to authenticate with a nomad server'
-    required: true
+    required: false
   address:
     description: 'Address of the nomad server'
     required: true
